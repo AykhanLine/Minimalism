@@ -1,4 +1,6 @@
 using Marvel.Data;
+using Marvel.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,10 +14,24 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<ApplicationDbContext>
     (opt => opt.UseSqlServer(connectionString));
 
+builder.Services.AddDefaultIdentity<M001User>().AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<ApplicationDbContext>();
+
+
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = "/dashboard/auth/login";
+    options.AccessDeniedPath = "/dashboard/auth/login";
+});
+
 var app = builder.Build();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseAuthentication();
+app.UseAuthorization();
+
 
 
 app.UseEndpoints(endpoints =>

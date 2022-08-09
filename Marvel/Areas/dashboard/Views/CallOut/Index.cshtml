@@ -1,0 +1,36 @@
+﻿@model Callout
+
+@if(Model == null)
+{
+   <a class="btn btn-outline-success btn-sm my-4" href="/dashboard/callout/create">Create</a>
+}
+
+@if (Model != null)
+{
+    <table class="table table-striped table-dark">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+              
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <th scope="row">@Model.Id</th>
+                <td>@Model.Name</td>
+                <td>
+                    <img width = "40" src="@Model.PhotoURL" />
+                </td>
+                <td>
+                    <a href="/dashboard/callout/edit/@Model.Id" class="btn btn-outline-warning btn-sm">Edit</a>
+                    <a href="/dashboard/callout/delete/@Model.Id" class="btn btn-outline-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+
+
+        </tbody>
+    </table>
+}

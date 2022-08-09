@@ -1,0 +1,37 @@
+﻿@model Stylish
+
+@if(Model == null)
+{
+   <a class="btn btn-outline-success btn-sm my-4" href="/dashboard/stylish/create">Create</a>
+}
+
+
+@if (Model != null)
+{
+    <table class="table table-striped table-dark">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Subtitle</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <th scope="row">@Model.Id</th>
+                <td>@Model.Tittle</td>
+               <td>@Model.Subtitle</td>
+                <td>
+                    <a href="/dashboard/stylish/edit/@Model.Id" class="btn btn-outline-warning btn-sm">Edit</a>
+                    <a href="/dashboard/stylish/detail/@Model.Id" class="btn btn-outline-info btn-sm">Detail</a>
+                    <a href="/dashboard/stylish/delete/@Model.Id" class="btn btn-outline-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+
+
+        </tbody>
+    </table>
+}
+
